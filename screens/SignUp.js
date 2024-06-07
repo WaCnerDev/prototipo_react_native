@@ -37,7 +37,7 @@ export default function SingUp({ navigation }) {
         <Text style={styles.txtPass}>Inicio de Sesión</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.popToTop()}>
+      <TouchableOpacity style={styles.mainBtn} onPress={() => navigation.popToTop()}>
         <LinearGradient
           colors={["#00C1BB", "#005B58"]}
           start={{ x: 0, y: 0 }}
@@ -58,12 +58,11 @@ export default function SingUp({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#ffffff",
+    height:"100%",
   },
-
   containerSvg: {
     alignItems: "center",
   },
-
   txtTitulo: {
     fontSize: 50,
     fontWeight: "bold",
@@ -79,7 +78,6 @@ const styles = StyleSheet.create({
     paddingLeft: 30,
     marginTop: 20,
   },
-
   txtInput: {
     width: "80%",
     height: 50,
@@ -96,7 +94,6 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     elevation: 10,
   },
-
   txtPass: {
     textAlign: "right",
     paddingTop: 10,
@@ -104,23 +101,19 @@ const styles = StyleSheet.create({
     color: "#00C1BB",
     fontSize: 15,
   },
-
   btnLogin: {
     borderRadius: 30,
-    width: 219,
-    height: 53,
+    width: 220,
+    height: 55,
     marginTop: 35,
-    marginLeft: 80,
-    paddingTop: 10,
+    padding: 10,
   },
-
   txtLogin: {
     fontSize: 20,
     fontWeight: "bold",
     color: "#fff",
     textAlign: "center",
   },
-
   txtCuenta: {
     textAlign: "center",
     paddingTop: 10,
@@ -128,7 +121,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     alignItems: "center",
   },
-
   txtRegistrarse: {
     textAlign: "center",
     color: "#00C1BB",
@@ -136,4 +128,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     fontWeight: "bold",
   },
+  mainBtn: {
+    alignItems:"center",
+  }
 });
+

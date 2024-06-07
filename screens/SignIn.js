@@ -31,7 +31,7 @@ export default function SignIn({ navigation }) {
         <Text style={styles.txtPass}>¿Has olvidado su contraseña?</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity>
+      <TouchableOpacity style={styles.mainBtn}>
         <LinearGradient
           colors={["#00C1BB", "#005B58"]}
           start={{ x: 0, y: 0 }}
@@ -52,6 +52,7 @@ export default function SignIn({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#ffffff",
+    height:"100%",
   },
   containerSvg: {
     alignItems: "center",
@@ -96,11 +97,10 @@ const styles = StyleSheet.create({
   },
   btnLogin: {
     borderRadius: 30,
-    width: 219,
-    height: 53,
+    width: 220,
+    height: 55,
     marginTop: 35,
-    marginLeft: 80,
-    paddingTop: 10,
+    padding: 10,
   },
   txtLogin: {
     fontSize: 20,
@@ -122,4 +122,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     fontWeight: "bold",
   },
+  mainBtn: {
+    alignItems:"center",
+  }
 });
