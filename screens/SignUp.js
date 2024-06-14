@@ -1,17 +1,53 @@
 // src/screens/HomeScreen.js
-import React from 'react';
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
+  Alert,
 } from "react-native";
-import SvgImage from '../components/SvgImage';
+import SvgImage from "../components/SvgImage";
 import { LinearGradient } from "expo-linear-gradient";
 
+// Import de Firebase
+import appFirebase from '../accesoFireBase';
+import { addDoc, collection, getFirestore } from "firebase/firestore";
+const db = getFirestore(appFirebase)
 
-export default function SingUp({ navigation }) {
+
+
+
+export default function SingUp({navigation}) {
+
+  //conector a base de datos
+const RegistarUsuario = async(navigation)=>{
+  try {
+    await addDoc(collection(db, 'ModuloRU'),{...estado})
+
+    Alert.alert('Alerta', 'El usuario se registró con éxito')
+
+    navigation.navigate('SignIn')
+
+  } catch  {
+    console.error(error)
+  }
+}
+
+  const inicioEstado = {
+    nombreCompleto: "",
+    correoElectronico: "",
+    contrasenna:""
+  };
+
+  const [estado, setEstado] = useState(inicioEstado);
+
+  const HandlerChangeText = (value, name) => {
+    setEstado({ ...estado, [name]: value });
+    console.log(estado);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.containerSvg}>
@@ -20,14 +56,20 @@ export default function SingUp({ navigation }) {
       <Text style={styles.txtTitulo}>Crear Cuenta</Text>
       <Text style={styles.txtSubtitulo}>Ingrese los datos solicitados:</Text>
       <TextInput
+        onChangeText={(value) => HandlerChangeText(value, "nombreCompleto")}
+        value={estado.nombreCompleto}
         placeholder="Nombre Completo"
         style={styles.txtInput}
       ></TextInput>
       <TextInput
+       onChangeText={(value) => HandlerChangeText(value, "correoElectronico")}
+       value={estado.correoElectronico}
         placeholder="Correo Electrónico"
         style={styles.txtInput}
       ></TextInput>
       <TextInput
+       onChangeText={(value) => HandlerChangeText(value, "contrasenna")}
+       value={estado.contrasenna}
         placeholder="Contraseña"
         style={styles.txtInput}
         secureTextEntry={true}
@@ -37,7 +79,10 @@ export default function SingUp({ navigation }) {
         <Text style={styles.txtPass}>Inicio de Sesión</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.mainBtn} onPress={() => navigation.popToTop()}>
+      <TouchableOpacity
+        style={styles.mainBtn}
+        onPress={() => RegistarUsuario(navigation) }
+      >
         <LinearGradient
           colors={["#00C1BB", "#005B58"]}
           start={{ x: 0, y: 0 }}
@@ -58,7 +103,7 @@ export default function SingUp({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#ffffff",
-    height:"100%",
+    height: "100%",
   },
   containerSvg: {
     alignItems: "center",
@@ -129,7 +174,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   mainBtn: {
-    alignItems:"center",
-  }
+    alignItems: "center",
+  },
 });
-
